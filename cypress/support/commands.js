@@ -47,3 +47,30 @@ Cypress.Commands.add('login',()=>{
     cy.get('h2').should('contain', 'Make Appointment');
 
 })
+
+Cypress.Commands.add('logout', () => {
+    cy.get('i.fa-bars').click();
+    cy.get('a[href="authenticate.php?logout"]').click();
+    cy.get('h1').should('contain', 'CURA Healthcare Service');
+
+});
+
+Cypress.Commands.add('getTheUsername', () => {
+    cy.get('input[value="John Doe"]')
+        .invoke('val')
+        .then((value) => {
+            const username = value;
+            cy.get('input#txt-username').type(username);
+        });
+});
+
+Cypress.Commands.add('getThePassword', () => {
+     cy.get('input[value="ThisIsNotAPassword"]')
+        .invoke('val')
+        .then((value)=> {
+            const password = value;
+            cy.get('input#txt-password').type(password);
+
+        });
+});
+

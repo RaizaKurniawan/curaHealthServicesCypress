@@ -36,14 +36,17 @@ describe('Cura Health Services Appointment Tests', () => {
                 cy.get('select#combo_facility').select('Hongkong CURA Healthcare Center');
                 cy.get('input#chk_hospotal_readmission').check();
                 cy.get('input#radio_program_medicare').check();
-                cy.get('input#txt_visit_date').type('2023-10-01').click();
+                cy.get('input#txt_visit_date').type('2024-10-01').click();
                 cy.get('textarea#txt_comment').click({force:true}).type('This is a test appointment.');
                 cy.get('button[type="submit"]').click();
 
                 cy.contains('h2', 'Appointment Confirmation').should('contain', 'Appointment Confirmation');
 
-                cy.get('i.fa-bars').click();
-                cy.get('a[href="authenticate.php?logout"]').click();
+                // cy.get('i.fa-bars').click();
+                // cy.get('a[href="authenticate.php?logout"]').click();
+                // cy.get('h1').should('contain', 'CURA Healthcare Service');
+
+                cy.logout(); // Menggunakan custom command untuk logout
                 cy.get('h1').should('contain', 'CURA Healthcare Service');
             });
                 // Increment the test case counter
