@@ -9,9 +9,15 @@ describe('Cura Health Services Appointment Tests', () => {
     const facility = Cypress.env('facility');
     const healthProgram = Cypress.env('healthProgram');
 
+    // Counter untuk nomor test case
+    let tcCounter = 1; 
+
+    // Menggunakan array untuk menyimpan fasilitas dan program kesehatan
     facility.forEach((facility) => {
         healthProgram.forEach((healthProgram) => {
-            it(`MKA-0001 - Make an appointment at ${facility} with ${healthProgram}`, () => {
+
+            
+            it(`MKA-${String(tcCounter).padStart(4, '0')} - Make an appointment at ${facility} with ${healthProgram}`, () => {
                 cy.get('select#combo_facility').select(facility);
                 cy.get('input#chk_hospotal_readmission').check();
                 cy.get(`input#radio_program_${healthProgram}`).check();
@@ -22,8 +28,10 @@ describe('Cura Health Services Appointment Tests', () => {
                 // Verifikasi untuk appointment confirmation
                 cy.contains('h2', 'Appointment Confirmation').should('contain', 'Appointment Confirmation');
             });
+                // Increment the test case counter
+            tcCounter++; 
 
-            it('MKA-0002 - Logout after making an appointment', () => {
+            it(`MKA-${String(tcCounter).padStart(4, '0')} - Logout after making an appointment`, () => {
 
                 cy.get('select#combo_facility').select('Hongkong CURA Healthcare Center');
                 cy.get('input#chk_hospotal_readmission').check();
@@ -38,7 +46,8 @@ describe('Cura Health Services Appointment Tests', () => {
                 cy.get('a[href="authenticate.php?logout"]').click();
                 cy.get('h1').should('contain', 'CURA Healthcare Service');
             });
-
+                // Increment the test case counter
+            tcCounter++; 
         });
     });
 });
