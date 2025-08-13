@@ -36,6 +36,5 @@ To run tests, run the following command
 
 ## Screenshots
 
-![App Screenshot]
-https://i.ibb.co.com/5h12jhWZ/screenshot.png
+![App Screenshot](cypress/reports/html/screenshots/screenshot.png)
 
